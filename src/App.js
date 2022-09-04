@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Singlecoin from './components/Singlecoin';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path="/coin/:id" element={<Singlecoin/>}></Route>
        </Routes>
-       
+    <Footer/>
     </div>
     </BrowserRouter>
     </div>

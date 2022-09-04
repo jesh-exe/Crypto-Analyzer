@@ -5,25 +5,18 @@ const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState({ show: "false", msg: "" });
     const [movie, setMovie] = useState([]);
-    const [query, setQuery] = useState("demon-slayer");
+    const [query, setQuery] = useState("");
     const [page, setPage] = useState(1);
-    let API_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=gecko_desc&per_page=11&page=${page}&sparkline=false&price_change_percentage=24h`;
+    const API_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
     const getMovies = async (url) => {
         try {
             const res = await fetch(url);
             const data = await res.json();
             console.log(data);
             setMovie(data);
-            if (data === "True") {
-                setIsLoading(false);
-                setIsError({show:"false",msg:data.Error});
-            } else {
-                setIsError({
-                    show: "true",
-                    msg: data.Error,
-                })
+            setIsLoading(false);
             }
-        } catch (error) {
+        catch (error) {
             console.log(error);
         }
     };
@@ -31,7 +24,13 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         let timerout=setTimeout(()=>{
             getMovies(`${API_URL}`);
-        },500)
+        },100)
+        return()=>{clearTimeout(timerout)};
+    }, [page]);
+    useEffect(() => {
+        let timerout=setTimeout(()=>{
+            getMovies(`${API_URL}`);
+        },100)
         return()=>{clearTimeout(timerout)};
     }, [page]);
     

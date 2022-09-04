@@ -22,6 +22,9 @@
 .navbar{
   /* position: fixed; */
 }
+.footer{
+  margin-top: 15%!important;
+}
 .coinImagee{
   height: 120px!important;
   width: 120px!important;
