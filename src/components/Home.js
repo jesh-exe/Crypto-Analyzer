@@ -17,6 +17,40 @@ const Home = () => {
                     <div className='row container-fluid mt-4'>
                         <h1 class="center text-center">LIST OF CRYPTO COINS </h1>
 
+                        <div className='col-md-12 bg-light text-black'>
+                        
+                            <article class="row episode__content episode">
+                            <div class="episode__number col-3">
+                                <div className='row'>
+                                <div className='col-4 text-center mt-4'>
+                                 <h4 className='font m-0 text-uppercase'>ICON</h4>
+                                
+                                </div>
+                                <div className='col-8 text-left mt-3'>
+                                 <h4 className='font m-0 text-uppercase'>NAME</h4>
+                                 <break/>
+                                 <p>other name</p>
+                                </div>
+                                </div>
+                                </div>
+                                <div class=" col-9">
+                                    <div className='row mt-4'>
+
+                                    <div class="col-4 align-middle">
+                                    <h3>PRICE</h3>
+                                    </div>
+                                    <div class="col-4">
+                                    <h3>CHANGE PERCENTAGE</h3>
+                                        
+                                    </div>
+                                    <div class="col-4">
+                                    <h3>MARKET CAP</h3>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
                         {movie.map((curMovie)=>{
                             if(query!=""){
                                 if(  curMovie.id===query){

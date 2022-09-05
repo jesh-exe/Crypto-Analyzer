@@ -19,6 +19,13 @@
   height: 75vh;
   z-index:-3;
 }
+a{
+  text-decoration: none!important;
+
+}
+a::hover{
+  color: grey!important;
+}
 .navbar{
   /* position: fixed; */
 }
