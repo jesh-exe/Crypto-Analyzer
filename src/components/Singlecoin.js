@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 // import Navbar from './Navbar';
+
 import { useParams } from "react-router-dom";
 
 // import { API_URL } from '../Context';
 const SingleMovie = () => {
-  const [coin, setCoin] = useState("bitcoin");
-  const { id } = useParams();
+  function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      };
+      const [coin, setCoin] = useState("bitcoin");
+      const { id } = useParams();
+      // let  coin_price=numberWithCommas(coin?.market_data?.current_price?.inr?.toFixed(2)); 
 
   const getMovies = async (url) => {
     try {
@@ -26,13 +31,17 @@ const SingleMovie = () => {
     <>
       <div class="container-fluid mt-5 ">
         <div class="row mt-4 text-white">
-          <div class="col-md-4 first-div text-center">
+          <div class="col-md-4 first-div text-center coin-detail">
             <img src={coin?.image?.large} alt="" />
-
-            <h1>{coin?.name}</h1>
+            <br/>
+            <br/>
+            <h1 style={{color: "gold"}}>{coin?.name}</h1>
             <p>{coin?.description?.en.split(". ")[0]}.</p>
             <h3>Rank:{coin?.coingecko_rank}</h3>
-            <h3>Current Price:₹ {coin?.market_data?.current_price?.inr}</h3>
+            <br/>
+            <h3>Current Price:₹ {coin?.market_data?.current_price?.inr.toLocaleString()}</h3>
+            <br/>
+            <h3>Market Cap:₹ {coin?.market_data?.market_cap?.inr.toLocaleString()}</h3>
           </div>
           <div class="col-md-8 second-div">
             <div class="row mt-4  justify-content-between">

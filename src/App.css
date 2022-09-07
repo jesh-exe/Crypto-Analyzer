@@ -1,3 +1,6 @@
+@import "react-alice-carousel/lib/alice-carousel.css";
+
+
 .body{
   background-color:black;
 }
@@ -26,9 +29,7 @@ a{
 a::hover{
   color: grey!important;
 }
-.navbar{
-  /* position: fixed; */
-}
+
 .footer{
   margin-top: 15%!important;
 }
@@ -45,11 +46,19 @@ body {
 
 p {
   margin: 0 0 13px 0;
+  color: rgb(168, 158, 158);
 }
 
 a {
   color: #fff;
 }
+a:hover{
+  color: gold;
+}
+.coin-detail{
+  border-right: 2px solid white;
+}
+
 .form-control{
   border:1px solid #121212!important ;
 }
@@ -59,9 +68,21 @@ a {
 }
 
 .episode__content {
-  border-top: 2px solid #fff;
+  border-top: 2px solid rgb(116, 109, 109);
 }
 .font{
   width: 50px;
 }
 
+/* //Carousel */
+
+.carousel-img {
+  height: 100px;
+  width: auto;
+  align-items: center;
+}
+
+.carousel-container {
+  margin-top: 175px;
+  color: white !important;
+}

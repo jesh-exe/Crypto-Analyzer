@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark shadow-5-strong sticky-top">
   <div className="container-fluid">
-    <a className="navbar-brand">CRYPTO</a>
+    <NavLink className="navbar-brand" to='/'>CRYPTO</NavLink>
     <form className="d-flex input-group w-auto" onSubmit={(e)=>e.preventDefault()}>
       <input
         
