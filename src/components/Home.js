@@ -5,6 +5,12 @@ import { useGlobalContext } from "../Context";
 const Home = () => {
     const {movie,page,setPage}=useGlobalContext();
     const {query,setQuery}=useGlobalContext();
+    
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      };
+      
+
     console.log(movie);
     console.log("hello");
     return (
@@ -116,14 +122,18 @@ const Home = () => {
                                     <div className='row mt-4'>
 
                                     <div class="col-4 align-middle">
-                                    <h3>₹ {curMovie.current_price}</h3>
+                                    <h3>₹ {numberWithCommas(curMovie.current_price.toFixed(2))}
+                                    </h3>
                                     </div>
                                     <div class="col-4">
-                                    <h3>{curMovie.price_change_percentage_24h}%</h3>
+                                    <h3>
+                                    {curMovie.price_change_percentage_24h.toFixed(2)}%</h3>
                                         
                                     </div>
                                     <div class="col-4">
-                                    <h3>₹ {curMovie.market_cap}</h3>
+                                    <h3>₹  {numberWithCommas(
+                                        curMovie.market_cap.toString().slice(0, -6))}
+                                    </h3>
                                         
                                     </div>
                                     </div>
