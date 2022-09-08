@@ -3,17 +3,16 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState({ show: "false", msg: "" });
-    const [movie, setMovie] = useState([]);
+    const [coins, setCoins] = useState([]);
     const [query, setQuery] = useState("");
     const [page, setPage] = useState(1);
     const API_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
-    const getMovies = async (url) => {
+    const getCoins = async (url) => {
         try {
             const res = await fetch(url);
             const data = await res.json();
             console.log(data);
-            setMovie(data);
+            setCoins(data);
             setIsLoading(false);
             }
         catch (error) {
@@ -23,18 +22,12 @@ const AppProvider = ({ children }) => {
     
     useEffect(() => {
         let timerout=setTimeout(()=>{
-            getMovies(`${API_URL}`);
-        },100)
-        return()=>{clearTimeout(timerout)};
-    }, [page]);
-    useEffect(() => {
-        let timerout=setTimeout(()=>{
-            getMovies(`${API_URL}`);
+            getCoins(`${API_URL}`);
         },100)
         return()=>{clearTimeout(timerout)};
     }, [page]);
     
-    return (<AppContext.Provider value={{ isLoading, movie, isError, query, setQuery ,page,setPage}}>{children}</AppContext.Provider>);
+    return (<AppContext.Provider value={{ isLoading, coins, query, setQuery ,page,setPage}}>{children}</AppContext.Provider>);
 };
 const useGlobalContext = () => {
     return useContext(AppContext);

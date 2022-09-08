@@ -4,15 +4,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 // import { API_URL } from '../Context';
-const SingleMovie = () => {
-  function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      };
+const SingleCoin = () => {
       const [coin, setCoin] = useState("bitcoin");
       const { id } = useParams();
       // let  coin_price=numberWithCommas(coin?.market_data?.current_price?.inr?.toFixed(2)); 
 
-  const getMovies = async (url) => {
+  const getCoin = async (url) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -24,7 +21,7 @@ const SingleMovie = () => {
   };
 
   useEffect(() => {
-    getMovies(`https://api.coingecko.com/api/v3/coins/${id}`);
+    getCoin(`https://api.coingecko.com/api/v3/coins/${id}`);
   }, [id]);
 
   return (
@@ -75,13 +72,7 @@ const SingleMovie = () => {
           </div>
         </div>
       </div>
-
-      {/* <div>
-        <h3>{coin.name}</h3>
-        <h3>Rank:{coin.coingecko_rank}</h3>
-        <h3>Current Price:₹ {coin.market_data?.current_price.inr}</h3>
-      </div> */}
     </>
   );
 };
-export default SingleMovie;
+export default SingleCoin;

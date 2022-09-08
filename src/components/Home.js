@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../App.css';
-// import AliceCarousel from "react-alice-carousel";
 import { NavLink } from 'react-router-dom';
 import { useGlobalContext } from "../Context";
 import Carousel from './Carousel';
 const Home = () => {
-    const { movie, page, setPage } = useGlobalContext();
-    const { query, setQuery } = useGlobalContext();
+    const { coins,query } = useGlobalContext();
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
 
-    console.log(movie);
+    console.log(coins);
     console.log("hello");
     return (
         <div className='continer-fluid text-secondary'>
@@ -56,11 +54,11 @@ const Home = () => {
                                 </div>
                             </article>
                         </div>
-                        {movie.map((curMovie) => {
-                            if (query != "") {
-                                if (curMovie.id === query) {
+                        {coins.map((curCoins) => {
+                            if (query !== "") {
+                                if (curCoins.id === query) {
 
-                                    return <NavLink to={`coin/${curMovie.id}`} key={curMovie.id} className="hell">
+                                    return <NavLink to={`coin/${curCoins.id}`} key={curCoins.id} className="hell">
 
                                         <div className='col-md-12'>
 
@@ -68,12 +66,12 @@ const Home = () => {
                                                 <div class="episode__number  col-md-3 col-12">
                                                     <div className='row'>
                                                         <div className='col-md-4 col-6'>
-                                                            <img className='coinImagee p-3' src={curMovie.image}></img>
+                                                            <img className='coinImagee p-3' src={curCoins.image}></img>
                                                         </div>
                                                         <div className='col-md-8 col-6 text-left mt-3'>
-                                                            <h5 className='font m-0 text-uppercase'>{curMovie.symbol}</h5>
+                                                            <h5 className='font m-0 text-uppercase'>{curCoins.symbol}</h5>
                                                             <break />
-                                                            <p>{curMovie.name}</p>
+                                                            <p>{curCoins.name}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,14 +81,14 @@ const Home = () => {
                                                     <div className='row mt-4'>
 
                                                         <div class="col-md-4 col-12">
-                                                            <h4>₹ {numberWithCommas(curMovie.current_price.toFixed(2))}</h4>
+                                                            <h4>₹ {numberWithCommas(curCoins.current_price.toFixed(2))}</h4>
                                                         </div>
                                                         <div class="col-md-4 col-12">
-                                                            <h4>{curMovie.price_change_percentage_24h.toFixed(2)}%</h4>
+                                                            <h4>{curCoins.price_change_percentage_24h.toFixed(2)}%</h4>
 
                                                         </div>
                                                         <div class="col-md-4 col-12">
-                                                            <h4>₹{numberWithCommas(curMovie.market_cap.toString().slice(0, -6))}</h4>
+                                                            <h4>₹{numberWithCommas(curCoins.market_cap.toString().slice(0, -6))}</h4>
 
                                                         </div>
                                                     </div>
@@ -102,7 +100,7 @@ const Home = () => {
                                 }
                             }
                             else {
-                                return <NavLink to={`coin/${curMovie.id}`} key={curMovie.id} className="hell">
+                                return <NavLink to={`coin/${curCoins.id}`} key={curCoins.id} className="hell">
 
                                     <div className='col-md-12'>
 
@@ -110,12 +108,12 @@ const Home = () => {
                                             <div class="episode__number  col-md-3 col-12">
                                                 <div className='row'>
                                                     <div className='col-md-4 col-6'>
-                                                        <img className='coinImagee p-3' src={curMovie.image}></img>
+                                                        <img className='coinImagee p-3' src={curCoins.image}></img>
                                                     </div>
                                                     <div className='col-md-8 col-6 text-left mt-3'>
-                                                        <h5 className='font m-0 text-uppercase'>{curMovie.symbol}</h5>
+                                                        <h5 className='font m-0 text-uppercase'>{curCoins.symbol}</h5>
                                                         <break />
-                                                        <p>{curMovie.name}</p>
+                                                        <p>{curCoins.name}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,16 +123,16 @@ const Home = () => {
                                                 <div className='row mt-4'>
 
                                                        <div class="col-md-4 col-12">
-                                                        <h4>₹ {numberWithCommas(curMovie.current_price.toFixed(2))}
+                                                        <h4>₹ {numberWithCommas(curCoins.current_price.toFixed(2))}
                                                         </h4>
                                                         </div>
                                                         <div class="col-md-4 col-12">
-                                                            <h4>{curMovie.price_change_percentage_24h.toFixed(2)}%</h4>
+                                                            <h4>{curCoins.price_change_percentage_24h.toFixed(2)}%</h4>
 
                                                         </div>
                                                         <div class="col-md-4 col-12">
                                                             <h4>₹  {numberWithCommas(
-                                                                curMovie.market_cap.toString().slice(0, -6))}
+                                                                curCoins.market_cap.toString().slice(0, -6))}
                                                             </h4>
 
                                                         </div>
@@ -147,12 +145,7 @@ const Home = () => {
 
                             }
                         })}
-                        <nav aria-label="Page navigation example my-auto bg-dark text-white">
-                            <ul class="pagination my-3 bg-transparent justify-content-center align-items-center text-white w-100">
-                                <li class="page-item"><a class="page-link bg-transparent text-white" href="#" onClick={e => { setPage(page - 1) }}>← Previous</a></li>
-                                <li class="page-item"><a class="page-link bg-transparent text-white" href="#" onClick={e => { setPage(page + 1) }}>Next →</a></li>
-                            </ul>
-                        </nav>
+                       
                     </div>
                 </div>
             </div>

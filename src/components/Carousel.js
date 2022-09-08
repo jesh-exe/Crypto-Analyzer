@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "../App.css";
-import { NavLink } from "react-router-dom";
 import { useGlobalContext } from "../Context";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -16,123 +15,131 @@ const responsive = {
 
 var items;
 const Carousel = () => {
-  const { movie, page, setPage } = useGlobalContext();
+  const { coins } = useGlobalContext();
   items = [
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[0]?.image}
+        src={coins[0]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[0]?.name} &nbsp;
-        {movie[0]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[0]?.name} &nbsp;
+        {coins[0]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
 
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[1]?.image}
+        src={coins[1]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[1]?.name} &nbsp;
-        {movie[1]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[1]?.name} &nbsp;
+        {coins[1]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[2]?.image}
+        src={coins[2]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[2]?.name} &nbsp;
-        {movie[2]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[2]?.name} &nbsp;
+        {coins[2]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[3]?.image}
+        src={coins[3]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[3]?.name} &nbsp;
-        {movie[3]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[3]?.name} &nbsp;
+        {coins[3]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[4]?.image}
+        src={coins[4]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[4]?.name} &nbsp;
-        {movie[4]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[4]?.name} &nbsp;
+        {coins[4]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[5]?.image}
+        src={coins[5]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[5]?.name} &nbsp;
-        {movie[5]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[5]?.name} &nbsp;
+        {coins[5]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[6]?.image}
+        src={coins[6]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[6]?.name} &nbsp;
-        {movie[6]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[6]?.name} &nbsp;
+        {coins[6]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
     <div>
       <img
+        alt="none found :)"
         className="carousel-img"
-        src={movie[7]?.image}
+        src={coins[7]?.image}
         onDragStart={handleDragStart}
         role="presentation"
       />
       <br />
       <br />
       <p>
-        {movie[7]?.name} &nbsp;
-        {movie[7]?.price_change_percentage_24h.toFixed(2)}%
+        {coins[7]?.name} &nbsp;
+        {coins[7]?.price_change_percentage_24h.toFixed(2)}%
       </p>
     </div>,
   ];
-  console.log(movie);
+  console.log(coins);
   return (
     <AliceCarousel
       mouseTracking
