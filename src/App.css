@@ -9,19 +9,6 @@
   
   /* opacity: 0.75; */
 }
-.head::before {
-  content: "";
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.574)) , url("../public/cypt.jpg");
-  /* opacity: 0.50; */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  position: absolute;
-  right: 0px;
-  left: 0px;
-  height: 75vh;
-  z-index:-3;
-}
 a{
   text-decoration: none!important;
 
