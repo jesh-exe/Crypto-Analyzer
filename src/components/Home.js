@@ -5,16 +5,33 @@ import { useGlobalContext } from "../Context";
 import { useState } from "react";
 import Carousel from "./Carousel";
 import Particles from "./Particles";
+import { confirmPasswordReset } from "firebase/auth";
 
 const Home = () => {
   const { coins, query } = useGlobalContext();
+  const [coins2, setCoins2] = useState(coins);
+  const [query2, setQuery2] = useState("");
+
+  const filter = (e) => {
+    const keyword = e.target.value;
+
+    if (keyword !== "") {
+      const results = coins2.filter((coin) => {
+        return coin.id.toLowerCase().includes(keyword.toLowerCase());
+      });
+      setCoins2(results);
+    } else {
+      setCoins2(coins);
+    }
+    setQuery2(keyword);
+  };
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  console.log(coins);
-  console.log("hello");
+  // console.log(coins);
+  // console.log("hello");
   return (
     <div className="continer-fluid text-secondary">
       <div className="row ">
@@ -36,20 +53,32 @@ const Home = () => {
                   <div className="row">
                     <div className="col-md-8 col-12">
                       <br />
-                      <h5 className="text-uppercase">NAME</h5>
+                      <button class="btn bg-transparent">
+                        <h4 className="text-uppercase text-secondary">NAME</h4>
+                      </button>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-9 col-12">
                   <div className="row mt-4">
                     <div class="col-md-4 col-12">
-                      <h4>PRICE</h4>
+                      <button class="btn bg-transparent">
+                        <h4 className="text-uppercase text-secondary">PRICE</h4>
+                      </button>
                     </div>
                     <div class="col-md-4 col-12">
-                      <h4>CHANGE PERCENTAGE</h4>
+                      <button class="btn bg-transparent">
+                        <h4 className="text-uppercase text-secondary">
+                          CHANGE PERCENTAGE
+                        </h4>
+                      </button>
                     </div>
                     <div class="col-md-4 col-12">
-                      <h4>MARKET CAP</h4>
+                      <button class="btn bg-transparent">
+                        <h4 className="text-uppercase text-secondary">
+                          MARKET CAP
+                        </h4>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -57,7 +86,7 @@ const Home = () => {
             </div>
             {coins.map((curCoins) => {
               if (query !== "") {
-                if (curCoins.id === query) {
+                if (curCoins.id.toLowerCase().includes(query.toLowerCase())) {
                   return (
                     <NavLink
                       to={`coin/${curCoins.id}`}
