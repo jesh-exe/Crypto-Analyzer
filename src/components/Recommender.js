@@ -66,7 +66,7 @@ const Predictor = () => {
             aria-describedby="search-addon"
             onChange={(e) => setToValue(e.target.value)}
           />
-          <button className="btn btn-primary" onClick={calculate}>
+          <button className="btn btn-warning" onClick={calculate}>
             Submit
           </button>
         </div>

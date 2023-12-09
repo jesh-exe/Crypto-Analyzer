@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Signup from "./Signup";
 import Login from "./Login";
-import { Box } from "@mui/material";
+import { AppBar, Backdrop, Box, Button, Fade, Modal, Tab, Tabs } from "@mui/material";
 import GoogleButton from "react-google-button";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useGlobalContext } from "../../Context";
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 const AuthModal = () => {
+  const [open, setOpen] = useState(false);
+
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   const googleProvider = new GoogleAuthProvider();
   const { alert, setAlert } = useGlobalContext();
 
@@ -31,61 +57,71 @@ const AuthModal = () => {
   };
   return (
     <div>
-      <div className="d-flex">
-        <div className="p-2">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            Login
-          </button>
-        </div>
-        <div className="p-2">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-          >
-            Register
-          </button>
-        </div>
-      </div>
-
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+      <Button
+        variant="contained"
+        style={{
+          width: 85,
+          height: 40,
+          marginLeft: 15,
+          backgroundColor: "#EEBC1D",
+        }}
+        onClick={handleOpen}
       >
-        <div class="modal-dialog">
-          <div class="modal-content bg-dark">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Login here
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <Login></Login>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
+        Login
+      </Button>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <div
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 400,
+              backgroundColor: '#4C4C4C',
+              color:'white',
+              border: '2px solid #000',
+              boxShadow: 24,
+              borderRadius: 10,
+              p: 4,
+            }}
+          >
+            <AppBar
+              position="static"
+              style={{
+                backgroundColor: "transparent",
+                color: "white",
+              }}
+            >
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                variant="fullWidth"
+                style={{ borderRadius: 10 }}
               >
-                Close
-              </button>
-            </div>
+                <Tab label="Login" />
+                <Tab label="Sign Up" />
+              </Tabs>
+            </AppBar>
+            {value === 0 && <Login handleClose={handleClose} />}
+            {value === 1 && <Signup handleClose={handleClose} />}
             <Box
               style={{
                 padding: 24,
@@ -104,60 +140,8 @@ const AuthModal = () => {
               />
             </Box>
           </div>
-        </div>
-      </div>
-      <div
-        class="modal fade"
-        id="exampleModal2"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content bg-dark">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Login here
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <Signup></Signup>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-            <Box
-              style={{
-                padding: 24,
-                paddingTop: 0,
-                display: "flex",
-                flexDirection: "column",
-                textAlign: "center",
-                gap: 20,
-                fontSize: 20,
-              }}
-            >
-              <span>OR</span>
-              <GoogleButton
-                style={{ width: "100%", outline: "none" }}
-                onClick={signInWithGoogle}
-              />
-            </Box>
-          </div>
-        </div>
-      </div>
+        </Fade>
+      </Modal>
     </div>
   );
 };

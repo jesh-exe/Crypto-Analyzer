@@ -9,6 +9,8 @@ import Alert from "./components/Alert";
 import Predictor from "./components/Recommender";
 import SingleCoin2 from "./components/Singlecoin";
 import Sipcalculator from "./components/Sipcalculator";
+import Userprofile from "./components/Userprofile";
+import News from "./components/NewsArticles";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path="/recommender" element={<Predictor />} />
             <Route path="/recommender/coin/:id" element={<Singlecoin />} />
             <Route path="/sip-calculator" element={<Sipcalculator />} />
+            <Route path="/userprofile" element={<Userprofile />} />
+            <Route path="/news" element={<News />} />
           </Routes>
           <Alert />
           <Footer />

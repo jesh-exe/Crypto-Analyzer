@@ -37,9 +37,14 @@ p {
 
 a {
   color: #fff;
+  text-decoration: none!important;
+  
 }
 a:hover {
   color: gold;
+}
+.hell:hover {
+  color: gold!important;
 }
 .coin-detail {
   border-right: 2px solid white;
@@ -75,11 +80,27 @@ a:hover {
 .navbar {
   /* background: grey; */
   background: rgba(255, 255, 255, 0);
+  
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(8.9px);
 }
+.test {
+  /* background: grey; */
+  background: rgba(255, 255, 255, 0);
+  
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(8.9px);
+}
+.buttonnnn{
+  background: rgba(255, 255, 255, 0.121);
+  
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10.9px);
 
+}
 .nav-button:hover {
   border-bottom: 3px solid gold !important;
 }

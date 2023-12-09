@@ -3,6 +3,7 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useGlobalContext } from "../../Context";
+import { Box, Button, TextField } from "@mui/material";
 
 const Login = ({ handleClose }) => {
   const [email, setEmail] = useState("");
@@ -37,30 +38,40 @@ const Login = ({ handleClose }) => {
     }
   };
 
-  return (
-							<>
-
-								<div class="form-group">
-									<label for="exampleInputEmail1">Email address</label> <input
-										type="email" class="form-control" name="email"
-										id="exampleInputEmail1" aria-describedby="emailHelp"
-										placeholder="Enter email" value={email}
-        onChange={(e) => setEmail(e.target.value)}/>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputPassword1">Password</label> <input
-										type="password" name="password" class="form-control"
-										id="exampleInputPassword1" placeholder="Password"  value={password}
-        onChange={(e) => setPassword(e.target.value)}/>
-								</div>
-								
-								
-								<div class="form-check">
-									<button
-										class="btn primary-background btn-outline-light"  onClick={handleSubmit}>Submit</button>
-
-								</div>
-                            </>	
+  return (<Box
+    p={3}
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+      color: "white",
+    }}
+  >
+    <TextField
+      variant="outlined"
+      type="email"
+      label="Enter Email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      fullWidth
+    />
+    <TextField
+      variant="outlined"
+      label="Enter Password"
+      type="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      fullWidth
+    />
+    <Button
+      variant="contained"
+      size="large"
+      onClick={handleSubmit}
+      style={{ backgroundColor: "#EEBC1D" }}
+    >
+      Login
+    </Button>
+  </Box>
   );
 };
 

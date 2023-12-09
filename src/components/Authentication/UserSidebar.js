@@ -2,18 +2,20 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+// import List from '@mui/material/List';
+// import Divider from '@mui/material/Divider';
+// import ListItem from '@mui/material/ListItem';
+// import ListItemButton from '@mui/material/ListItemButton';
+// import ListItemIcon from '@mui/material/ListItemIcon';
+// import ListItemText from '@mui/material/ListItemText';
 import { Avatar, makeStyles } from '@mui/material';
 import { useGlobalContext } from '../../Context';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete,AiOutlineTrademarkCircle } from "react-icons/ai";
 import { signOut } from 'firebase/auth';
+import Userprofile from '../Userprofile';
+
 
 export default function UserSidebar() {
   const { user, setAlert, watchlist, coins, symbol } = useGlobalContext();
@@ -47,14 +49,18 @@ export default function UserSidebar() {
   };
 
   const list = (anchor) => (
+    <>
+
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      style={{backgroundColor:"yellow",}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-
+      
     </Box>
+    </>
   );
   const removeFromWatchlist = async (coin) => {
     const coinRef = doc(db, "watchlist", user.uid);
@@ -83,7 +89,18 @@ export default function UserSidebar() {
       {['right'].map((anchor) => (
         
       <React.Fragment key={anchor}>
-        <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+      <Avatar
+            onClick={toggleDrawer(anchor, true)}
+            style={{
+              height: 38,
+              width: 38,
+              marginLeft: 15,
+              cursor: "pointer",
+              backgroundColor: "#EEBC1D",
+            }}
+            src={user.photoURL}
+            alt={user.displayName || user.email}
+          />
         <SwipeableDrawer
 
           anchor={anchor}

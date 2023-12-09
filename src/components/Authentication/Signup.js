@@ -5,6 +5,7 @@ import { auth } from "../../firebase";
 import { useGlobalContext } from "../../Context";
 import 'react-toastify/dist/ReactToastify.css';
 import Alert from "../Alert";
+import { Box, Button, TextField } from "@mui/material";
 
 const Signup = ({ handleClose }) => {
     const [email, setEmail] = useState("");
@@ -46,36 +47,48 @@ const Signup = ({ handleClose }) => {
         }
     };
     return (
-        <>
-
-
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label> <input
-                    type="email" class="form-control" name="email"
-                    id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email" value={email}
-                    onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label> <input
-                    type="password" name="password" class="form-control"
-                    id="exampleInputPassword1" placeholder="Password" value={password}
-                    onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">conform Password</label> <input
-                    type="password" name="password" class="form-control"
-                    id="exampleInputPassword1" placeholder="Password" value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)} />
-            </div>
-
-            <div class="form-check">
-                <button
-                    class="btn primary-background btn-outline-light" onClick={handleSubmit}>Submit</button>
-
-            </div>
-
-        </>
+        <Box
+        p={3}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          color: "white",
+        }}
+      >
+        <TextField
+          variant="outlined"
+          type="email"
+          label="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          fullWidth
+        />
+        <TextField
+          variant="outlined"
+          label="Enter Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          fullWidth
+        />
+        <TextField
+          variant="outlined"
+          label="Confirm Password"
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          fullWidth
+        />
+        <Button
+          variant="contained"
+          size="large"
+          style={{ backgroundColor: "#EEBC1D" }}
+          onClick={handleSubmit}
+        >
+          Sign Up
+        </Button>
+      </Box>
     );
 };
 
